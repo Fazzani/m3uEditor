@@ -9,10 +9,25 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "test": "jest"
+    "test": "jest",
+    "prettify": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\"",
+    "lint": "npm run tslint # && npm run eslint",
+    "push": "git add . && git commit --amend --no-edit -a --no-verify  && git push origin --force",
+    "eslint": "node_modules\\.bin\\eslint --ignore-pattern public/lang/** --ignore-path .gitignore ./public",
+    "tslint": "tslint --project ./tsconfig.json '**/*.ts' --exclude '**/node_modules/**'"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fazzani/m3uElec.git"
+  },
+  "keywords": [
+    "m3u",
+    "viewer",
+    "iptv"
+  ],
+  "bugs": {
+    "url": "https://github.com/Fazzani/m3uElec/issues"
+  },
   "author": {
     "name": "Fazzani",
     "email": "fazzani.heni@outlook.fr"
@@ -63,6 +78,11 @@
       ]
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
+  },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.51",
     "@electron-forge/maker-deb": "6.0.0-beta.51",
@@ -71,22 +91,30 @@
     "@electron-forge/maker-zip": "6.0.0-beta.51",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.51",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/copy-webpack-plugin": "^6.0.0",
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@zeit/webpack-asset-relocator-loader": "marshallofsound/webpack-asset-relocator-loader",
+    "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.0.0",
     "electron": "^9.0.2",
     "electron-util": "^0.14.1",
     "fork-ts-checker-webpack-plugin": "^4.1.6",
+    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "jest-fetch-mock": "^3.0.3",
     "jest-preset-typescript": "^1.2.0",
     "material-ui": "^0.20.2",
     "node-loader": "^0.6.0",
+    "prettier": "2.0.5",
     "style-loader": "^0.23.1",
     "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^5.0.0",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
@@ -94,9 +122,13 @@
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
+    "@types/electron-settings": "^3.1.1",
     "@types/isomorphic-fetch": "^0.0.35",
+    "electron-log": "^4.2.1",
+    "electron-settings": "^3.2.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "update-electron-app": "^1.5.0"
   }
 }

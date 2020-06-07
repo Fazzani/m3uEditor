@@ -1,16 +1,20 @@
-import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import fs from 'fs';
 
 interface Dictionary<T> {
   [key: string]: T;
 }
 
-export class Row {
+interface Checked {
+  checked: boolean;
+}
+export class Row implements Checked {
   public Name: string | undefined;
   public Url: string | undefined;
   public Properties: Dictionary<string>;
+  public checked: boolean = false;
 
-  constructor(name: string = '', url: string = '', properties: Dictionary<string>) {
+  constructor(name: string = '', url: string = '', properties: Dictionary<string> = {}) {
     this.Name = name;
     this.Url = url;
     this.Properties = properties;
@@ -20,9 +24,9 @@ export class Row {
 export class Playlist {
   public Name: string;
   public Location: string;
-  public Rows: Row[] | undefined;
+  public Rows: Row[];
 
-  constructor(name: string, location: string, rows: Row[] | undefined) {
+  constructor(name: string, location: string, rows: Row[] = []) {
     this.Name = name;
     this.Location = location;
     this.Rows = rows;
@@ -32,16 +36,16 @@ export class Playlist {
   static STREAM_META_HEADER_FILE: string = '#EXTM3U';
 
   public static CreatePlaylist(url: string, lines: string[], name: string = ''): Playlist {
-    let pl: Playlist = new Playlist('', url, new Array<Row>());
-    let row: Row | undefined;
+    const pl: Playlist = new Playlist('', url, new Array<Row>());
+    let row: Row = new Row('', '');
 
     for (const [index, line] of lines.entries()) {
       if (line.length === 0 || line.startsWith(Playlist.STREAM_META_HEADER_FILE)) {
         continue;
       }
       if (line.startsWith(Playlist.STREAM_META_PREFIX)) {
-        let tab1 = line.slice(Playlist.STREAM_META_PREFIX.length).trim().split(',');
-        let dictMeta: Dictionary<string> = {};
+        const tab1 = line.slice(Playlist.STREAM_META_PREFIX.length).trim().split(',');
+        const dictMeta: Dictionary<string> = {};
         tab1[0]
           .split('="')
           .flatMap((x) => {
@@ -50,14 +54,13 @@ export class Playlist {
           })
           .map((e: string, i: number, a: string[]) => {
             if (i % 2 == 0) {
-              // return { key: e?.trim(), value: a[i + 1]?.trim() };
               dictMeta[e?.trim()] = a[i + 1]?.trim();
             }
           })
           .filter((x) => x !== undefined);
 
         row = new Row(tab1[1].trim(), '', dictMeta);
-      } else if (row != undefined) {
+      } else if (row !== undefined) {
         row.Url = line;
         pl.Rows?.push(row);
       }
@@ -69,12 +72,12 @@ export class Playlist {
    * Read From Url
    */
   public static async ReadFromUrl(url: string): Promise<Playlist> {
-    if (url == undefined || url === '') throw new Error('Argument Exception');
-    var regex = /^https?:\/\/(.*)$/g;
+    if (url === undefined || url === '') throw new Error('Argument Exception');
+    const regex = /^https?:\/\/(.*)$/g;
     if (!regex.test(url)) throw new Error('Argument Exception');
 
-    let res = await fetch(url);
-    let lines = (await res.text()).split(/\r?\n/);
+    const res = await fetch(url);
+    const lines = (await res.text()).split(/\r?\n/);
     return Playlist.CreatePlaylist(url, lines);
   }
 
@@ -82,9 +85,8 @@ export class Playlist {
    * Read From File
    */
   public static async ReadFromFile(path: string): Promise<Playlist> {
-    let res = await fs.promises.readFile(path, 'utf8');
-    console.log(res);
-    let lines = res.split(/\r?\n/);
+    const res = await fs.promises.readFile(path, 'utf8');
+    const lines = res.split(/\r?\n/);
     return Playlist.CreatePlaylist(path, lines);
   }
 }
