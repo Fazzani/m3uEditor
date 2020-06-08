@@ -68,7 +68,7 @@
               "entryPoints": [
                 {
                   "html": "./src/index.html",
-                  "js": "./src/app.tsx",
+                  "js": "./src/renderer.tsx",
                   "name": "main_window"
                 }
               ]
@@ -84,6 +84,8 @@
     }
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.10.1",
+    "@babel/preset-typescript": "^7.10.1",
     "@electron-forge/cli": "6.0.0-beta.51",
     "@electron-forge/maker-deb": "6.0.0-beta.51",
     "@electron-forge/maker-rpm": "6.0.0-beta.51",
@@ -95,9 +97,12 @@
     "@types/jest": "^25.2.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-virtualized": "^9.21.10",
+    "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@zeit/webpack-asset-relocator-loader": "marshallofsound/webpack-asset-relocator-loader",
+    "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.2",
-    "css-loader": "^3.0.0",
+    "css-loader": "^3.5.3",
     "electron": "^9.0.2",
     "electron-util": "^0.14.1",
     "fork-ts-checker-webpack-plugin": "^4.1.6",
@@ -107,8 +112,11 @@
     "jest-preset-typescript": "^1.2.0",
     "material-ui": "^0.20.2",
     "node-loader": "^0.6.0",
+    "node-sass": "^4.14.1",
     "prettier": "2.0.5",
-    "style-loader": "^0.23.1",
+    "react-hot-loader": "^4.12.21",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
     "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.5",
     "tslint": "^6.1.2",
@@ -120,15 +128,20 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
     "@types/electron-settings": "^3.1.1",
     "@types/isomorphic-fetch": "^0.0.35",
+    "@types/react-window": "^1.8.2",
     "electron-log": "^4.2.1",
     "electron-settings": "^3.2.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-virtualized": "^9.21.2",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
     "update-electron-app": "^1.5.0"
   }
 }

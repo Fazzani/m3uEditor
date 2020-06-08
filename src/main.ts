@@ -1,6 +1,5 @@
-import { app, BrowserWindow, Menu, IpcMain, ipcMain } from 'electron';
+import { app, BrowserWindow, Menu, ipcMain } from 'electron';
 import { is } from 'electron-util';
-import settings from 'electron-settings';
 import { menu } from './native-ui/all';
 
 require('update-electron-app')({
@@ -19,6 +18,8 @@ if (require('electron-squirrel-startup')) {
   // eslint-disable-line global-require
   app.quit();
 }
+
+console.log(app.getPath('userData'));
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

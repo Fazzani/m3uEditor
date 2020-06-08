@@ -1,6 +1,34 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.List {
+  border: 1px solid #d9dddd;
+}
+
+.ListItemEven,
+.ListItemOdd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ListItemEven {
+  background-color: #f8f8f0;
+}
+
+.AutoSizerContainer {
+  /* background-color: #FF0000; */
+  /* height: calc(100vh - 100px); */
+  height: 100%;
+  width: 100%;
 }

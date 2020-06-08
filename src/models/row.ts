@@ -85,6 +85,7 @@ export class Playlist {
    * Read From File
    */
   public static async ReadFromFile(path: string): Promise<Playlist> {
+    console.log(`Reading from file ${path}`)
     const res = await fs.promises.readFile(path, 'utf8');
     const lines = res.split(/\r?\n/);
     return Playlist.CreatePlaylist(path, lines);

@@ -1,3 +1,10 @@
+import { hot } from 'react-hot-loader';
+import React from 'react';
+import ReactDOM from 'react-dom';
+// import * as serviceWorker from './serviceWorker';
+import './index.css';
+import App from './App';
+
 /**
  * This file will automatically be loaded by webpack and run in the "renderer" context.
  * To learn more about the differences between the "main" and the "renderer" context in
@@ -26,8 +33,9 @@
  * ```
  */
 
-import "./index.css";
 
-console.log(
-  '👋 This message is being logged by "renderer.js", included via webpack'
-);
+
+
+console.log('👋 This message is being logged by "renderer.tsx", included via webpack');
+
+ReactDOM.render(<App/>, document.getElementById('root'));

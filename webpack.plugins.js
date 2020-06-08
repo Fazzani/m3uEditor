@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = [
+  // new webpack.HotModuleReplacementPlugin(),
   new webpack.ExternalsPlugin('commonjs', ['electron']),
   new ForkTsCheckerWebpackPlugin({
     async: false,
