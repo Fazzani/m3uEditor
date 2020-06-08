@@ -17,7 +17,8 @@
       "cwd": "${workspaceFolder}",
       "timeout": 60000,
       "sourceMaps": true,
-      "outFiles": ["${workspaceRoot}/.webpack/**/*.js"]
+      "outFiles": ["${workspaceRoot}/.webpack/**/*.js"],
+      "preLaunchTask": "npm: fix"
     },
     {
       "name": "Electron: Renderer: App",

@@ -5,7 +5,8 @@
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start $@",
+    "start": "npm run fix && electron-forge start $@",
+    "fix": "./fix-elctronsource-forge.sh",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
