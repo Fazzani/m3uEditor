@@ -1,15 +1,17 @@
 # m3u Elec
 
+[![Build Status](https://dev.azure.com/henifazzani/Xtream.Client/_apis/build/status/Fazzani.m3uEditor?branchName=master)](https://dev.azure.com/henifazzani/Xtream.Client/_build/latest?definitionId=23&branchName=master)
+
 M3u electron app
 
 ## TODO
 
-- [ ] CI
-- [ ] Fix Perf
+- [x] CI
+- [x] Fix Perf
 - [ ] Load from url
-- [ ] Loading screen when switching playlist
+- [x] Loading screen when switching playlist
 - [ ] Play stream
-- [ ] Load last playlist (history)
+- [x] Load last playlist (history)
 - [ ] Save/export playlist
 - [ ] Edit pLaylist
 - [ ] ServiceWorker

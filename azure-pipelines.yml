@@ -1,0 +1,31 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    yarn install
+    yarn lint
+  displayName: 'yarn install and build'
+
+- script: |
+    yarn test:ci
+  displayName: 'yarn test'
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: 'artifacts/TEST-RESULTS.xml'
+
+- script: |
+    yarn run fix
+    yarn run make
+  displayName: 'yarn test'

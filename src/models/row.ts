@@ -1,6 +1,5 @@
 import 'isomorphic-fetch';
 import fs from 'fs';
-
 interface Dictionary<T> {
   [key: string]: T;
 }
@@ -36,7 +35,7 @@ export class Playlist {
   static STREAM_META_HEADER_FILE: string = '#EXTM3U';
 
   public static CreatePlaylist(url: string, lines: string[], name: string = ''): Playlist {
-    const pl: Playlist = new Playlist('', url, new Array<Row>());
+    const pl: Playlist = new Playlist('', url, []);
     let row: Row = new Row('', '');
 
     for (const [index, line] of lines.entries()) {
@@ -53,7 +52,7 @@ export class Playlist {
             return x;
           })
           .map((e: string, i: number, a: string[]) => {
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
               dictMeta[e?.trim()] = a[i + 1]?.trim();
             }
           })
