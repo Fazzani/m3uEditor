@@ -28,4 +28,4 @@ steps:
 - script: |
     yarn run fix
     yarn run make
-  displayName: 'yarn test'
+  displayName: 'yarn make'

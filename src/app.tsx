@@ -5,9 +5,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import settings from 'electron-settings';
-import { Container } from '@material-ui/core';
 
 const defaultUri = 'https://gist.githubusercontent.com/Fazzani/722f67c30ada8bac4602f62a2aaccff6/raw/0b75e84d15b955f7073cb0225e7919a03347d8e9/playlist1.m3u';
+
 function App() {
   const _ipc: NodeJS.EventEmitter = window.require('electron').ipcRenderer;
 
@@ -44,6 +44,4 @@ function App() {
   );
 }
 
-// ReactDOM.render(<Select compiler="test" framework="fra" />, document.getElementById('root'));
-// ReactDOM.render(<App />, document.getElementById('root'));
 export default hot(module)(App);

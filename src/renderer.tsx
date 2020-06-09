@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import * as serviceWorker from './serviceWorker';
@@ -32,8 +31,6 @@ import App from './App';
  *  });
  * ```
  */
-
-
 
 
 console.log('👋 This message is being logged by "renderer.tsx", included via webpack');
