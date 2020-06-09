@@ -6,15 +6,16 @@ M3u electron app
 
 ## TODO
 
-- [x] CI
-- [x] Fix Perf
 - [ ] Load from url
-- [x] Loading screen when switching playlist
 - [ ] Play stream
-- [x] Load last playlist (history)
-- [ ] Save/export playlist
 - [ ] Edit pLaylist
+- [ ] Save/export playlist
 - [ ] ServiceWorker
+- [x] CI
+  - [ ] Publish packages stage (deb, dmg, win)
+- [x] Fix Perf
+- [x] Loading screen when switching playlist
+- [x] Load last playlist (history)
 - [x] Dark theme
 - [x] Tray
 
